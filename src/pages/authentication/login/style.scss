@@ -1,0 +1,125 @@
+.login_container {
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login__overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); // overlay tối nhẹ
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login__form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    padding: 40px 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-right: 60px;
+
+    h1 {
+      color: #fff;
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 10px;
+      margin-left: 25px;
+    }
+
+    .login__field {
+      input {
+        width: 100%;
+        padding: 12px 16px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        transition: background 0.3s;
+
+        &::placeholder {
+          color: #ddd;
+        }
+
+        &:focus {
+          background-color: rgba(255, 255, 255, 0.25);
+        }
+      }
+    }
+
+    .login__options {
+      display: flex;
+      justify-content: flex-end;
+
+      .forgot {
+        font-size: 14px;
+        color: #fff;
+        text-decoration: none;
+        transition: opacity 0.3s;
+
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+    }
+
+    .login__submit {
+      button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background-color: #ec167f;
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.3s;
+        margin-left: 15px;
+        &:hover {
+          background-color: #be2871;
+        }
+      }
+    }
+    .login__google {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      margin-left: 30px;
+      div {
+        transform: scale(1.01); 
+        transform-origin: top;
+        &:hover{
+          opacity: 0.9;
+        }
+      }
+    }
+
+    .login__register {
+      font-size: 14px;
+      text-align: center;
+      color: #fff;
+      margin-left: 20px;
+      a {
+        color: #ec167f;
+        text-decoration: none;
+        font-weight: 500;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

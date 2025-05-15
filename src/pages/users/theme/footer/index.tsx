@@ -1,27 +1,27 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./style.scss";
-import {
-  faSquareDribbble,
-  faSquareFacebook,
-  faSquarePinterest,
-  faSquareTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import image1 from "../../../../assets/photoGallery/image1.png";
-import image2 from "../../../../assets/photoGallery/image2.png";
-import image3 from "../../../../assets/photoGallery/image3.png";
-import image4 from "../../../../assets/photoGallery/image4.png";
-import image5 from "../../../../assets/photoGallery/image5.png";
-import image6 from "../../../../assets/photoGallery/image6.png";
-import logo from "../../../../assets/logo.png";
-import {
-  faEarthAsia,
-  faEnvelope,
-  faPhoneVolume,
-} from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import "./style.scss";
+// import {
+//   faSquareDribbble,
+//   faSquareFacebook,
+//   faSquarePinterest,
+//   faSquareTwitter,
+// } from "@fortawesome/free-brands-svg-icons";
+// import image1 from "../../../../assets/photoGallery/image1.png";
+// import image2 from "../../../../assets/photoGallery/image2.png";
+// import image3 from "../../../../assets/photoGallery/image3.png";
+// import image4 from "../../../../assets/photoGallery/image4.png";
+// import image5 from "../../../../assets/photoGallery/image5.png";
+// import image6 from "../../../../assets/photoGallery/image6.png";
+// import logo from "../../../../assets/logo.png";
+// import {
+//   faEarthAsia,
+//   faEnvelope,
+//   faPhoneVolume,
+// } from "@fortawesome/free-solid-svg-icons";
 const Footer = () => {
   return (
     <footer className="footer_container">
-      <div className="footer_section">
+      {/* <div className="footer_section">
         <div className="footer_introduce">
           <img src={logo} alt="" style={{ width: "200px", height: "100px" }} />
           <p>
@@ -119,7 +119,7 @@ const Footer = () => {
             <img src={image6} alt="" />
           </div>
         </div>
-      </div>
+      </div> */}
     </footer>
   );
 };
