@@ -3,6 +3,8 @@ export const ROUTERS = {
     HOME: "",
   },
   AUTH: {
-    LOGIN: "/login"
+    LOGIN: "/login",
+    FORGOTPASSWORD:"/forgotPassword",
+    REGISTER:"/register"
   }
 }
