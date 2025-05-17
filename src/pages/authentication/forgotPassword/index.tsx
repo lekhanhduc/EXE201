@@ -1,5 +1,6 @@
 import "./style.scss";
 import loginBackground from "../../../assets/login/loginBackground.jpg";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
@@ -20,7 +21,7 @@ const ForgotPassword = () => {
           </div>
 
           <div className="forgotPassword__register">
-            Remember your password? <a href="/login">Back to Login</a>
+            Remember your password? <Link to={"/login"} className="login-link">Back to Login</Link>
           </div>
         </form>
       </div>

@@ -92,27 +92,13 @@
         }
       }
     }
-    .register__google {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 20px;
-      margin-left: 30px;
-      div {
-        transform: scale(1.01);
-        transform-origin: top;
-        &:hover {
-          opacity: 0.9;
-        }
-      }
-    }
 
     .register__register {
       font-size: 14px;
       text-align: center;
       color: #fff;
       margin-left: 20px;
-      a {
+      .login-link {
         color: #ec167f;
         text-decoration: none;
         font-weight: 500;
@@ -122,6 +108,7 @@
       }
     }
   }
+  
   .register__error {
     color: #ff4d4f;
     background-color: #fff1f0;

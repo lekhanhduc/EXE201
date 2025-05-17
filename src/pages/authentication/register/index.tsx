@@ -1,6 +1,7 @@
 import "./style.scss";
 import loginBackground from "../../../assets/login/loginBackground.jpg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -61,7 +62,7 @@ const Register = () => {
           </div>
 
           <div className="register__register">
-            Already have an account? <a href="/login">Login</a>
+            Already have an account? <Link to={"/login"} className="login-link">Login</Link>
           </div>
         </form>
       </div>
