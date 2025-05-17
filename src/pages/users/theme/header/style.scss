@@ -12,6 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 100000000;
   .nav_header-content {
     .nav_header-item {
       ul {
@@ -77,11 +78,16 @@
       &:hover::before {
         width: 100%;
       }
-      &:hover {
-        color: #ec167f;   
-      }
       &:focus{
         outline: none;
+      }
+      .button__link{
+        color: #fff;
+        text-decoration: none;
+        padding: 10px;
+        &:hover{
+          color: #ec167f;   
+        }
       }
     }
   }

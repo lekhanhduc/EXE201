@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import "./style.scss";
 import loginBackground from "../../../assets/login/loginBackground.jpg";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,9 +41,7 @@ const Login = () => {
           <form className="login__form" id="form-1" onSubmit={handleSubmit}>
             <h1>Welcome Back</h1>
 
-            {errorMessage && (
-              <div className="login__error">{errorMessage}</div>
-            )}
+            {errorMessage && <div className="login__error">{errorMessage}</div>}
 
             <div className="login__field">
               <input
@@ -63,9 +62,9 @@ const Login = () => {
             </div>
 
             <div className="login__options">
-              <a href="/forgotPassword" className="forgot">
+              <Link to={"/forgotPassword"} className="forgot">
                 Forgot Password?
-              </a>
+              </Link>
             </div>
 
             <div className="login__submit">
@@ -77,7 +76,7 @@ const Login = () => {
             </div>
 
             <div className="login__register">
-              Don't have an account? <a href="/register">Register</a>
+              Don't have an account? <Link to={"/register"} className="register-link">Register</Link>
             </div>
           </form>
         </div>

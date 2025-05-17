@@ -18,6 +18,7 @@
 //   faEnvelope,
 //   faPhoneVolume,
 // } from "@fortawesome/free-solid-svg-icons";
+// import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="footer_container">
@@ -67,22 +68,22 @@ const Footer = () => {
             <h3>Useful Links</h3>
             <ul>
               <li>
-                <a href="">About Us</a>
+                <Link to={"/aboutUS"} className="item__link">About Us</Link>
               </li>
               <li>
-                <a href="">Services</a>
+                <Link to={"/services"} className="item__link">Services</Link>
               </li>
               <li>
-                <a href="">Projects</a>
+                <Link to={"/projects"} className="item__link">Projects</Link>
               </li>
               <li>
-                <a href="">Schedule</a>
+                <Link to={"/schedule"} className="item__link">Schedule</Link>
               </li>
               <li>
-                <a href="">Blogs</a>
+                <Link to={"/blogs"} className="item__link">Blogs</Link>
               </li>
               <li>
-                <a href="">Contact Us</a>
+                <Link to={"/ContactUs"} className="item__link">Contact Us</Link>
               </li>
             </ul>
           </div>
