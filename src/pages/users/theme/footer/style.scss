@@ -4,12 +4,10 @@
     padding: 0;
     box-sizing: border-box;
   }
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 500px;
+
   background-image: url("../../../../assets/footer-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
   .footer_section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -97,6 +95,7 @@
             -o-transition: all 0.3s ease;
             transition: all 0.3s ease;
             width: 130px;
+            text-decoration: none;
             &:hover {
               color: #f70068;
             }

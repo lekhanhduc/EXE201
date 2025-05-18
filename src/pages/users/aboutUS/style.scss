@@ -50,6 +50,7 @@ html {
         text-decoration: none;
         color: #fff;
         font-weight: 500;
+        margin-bottom: 15px;
 
         &:hover {
           text-decoration: underline;
@@ -147,6 +148,7 @@ html {
         }
 
         .register-text{
+          text-decoration: none;
           color: #fff;
         }
       }
@@ -276,6 +278,7 @@ html {
       }
       .button__contact {
         color: #fff;
+        text-decoration: none;
         &:hover {
           padding: 10px 0;
           color: #ec167f;

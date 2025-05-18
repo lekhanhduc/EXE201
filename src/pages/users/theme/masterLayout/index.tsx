@@ -1,17 +1,17 @@
-import { Outlet } from "react-router-dom"
-import Footer from "../footer"
-import Header from "../header"
-
+import { Outlet } from "react-router-dom";
+import Footer from "../footer";
+import Header from "../header";
+import "./"
 const MasterLayout = () => {
   return (
-    <div>
-      <Header/>
-      <main>
-        <Outlet/>
+    <div className="layout">
+      <Header />
+      <main className="main-content">
+        <Outlet />
       </main>
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default MasterLayout
+export default MasterLayout;

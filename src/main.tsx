@@ -1,10 +1,12 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import { BrowserRouter } from 'react-router-dom'
-import RouterCustom from './router.tsx'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import RouterCustom from "./router.tsx";
+import ScrollToTop from "./component/scrollToTop/index.tsx";
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
-    <RouterCustom/>
+    <ScrollToTop />
+    <RouterCustom />
   </BrowserRouter>
-)
+);
