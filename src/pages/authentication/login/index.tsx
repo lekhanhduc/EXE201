@@ -12,22 +12,19 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!email || !password) {
       alert("Please enter both email and password.");
       return;
     }
 
-    // Optional: Regex email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       alert("Please enter a valid email address.");
       return;
     }
 
-    setErrorMessage(""); // Clear errors
+    setErrorMessage(""); 
 
-    // You can handle login logic here
     console.log("Logging in with:", { email, password });
   };
 

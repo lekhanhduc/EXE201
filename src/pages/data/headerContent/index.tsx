@@ -5,7 +5,7 @@ const HeaderContent = [
   { name: "Speakers", path:"/speakers" },
   { name: "Schedule", path:"/schedule" },
   { name: "Blog", path:"/blog" },
-  { name: "Contact", path:"/contact" }
+  { name: "Contact", path:"/contactUS" }
 ]
 
 export default HeaderContent
