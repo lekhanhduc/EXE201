@@ -24,7 +24,7 @@ const Footer = () => {
     <footer className="footer_container">
       <div className="footer_section">
         <div className="footer_introduce">
-          <img src={logo} alt="" style={{ width: "200px", height: "100px" }} />
+          <img src={logo} alt="" style={{ width: "150px", height: "150px" }} />
           <p>
             We have a strong position in providing innovative and modern
             solutions for the event industry, with over 10 years of experience

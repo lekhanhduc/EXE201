@@ -1,0 +1,42 @@
+.categories__container {
+  background-color: #101130; 
+  padding: 20px;
+  .categories__tittle {
+    font-weight: bold;
+    font-size: 24px;
+    margin: 15px 0;
+    text-transform: uppercase;
+    h1{
+      color: #fff;
+    }
+  }
+
+  .categories__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .categories__item {
+    padding: 8px 18px;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background-color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+
+    .categories:hover {
+      background-color: #101130;
+      color: white;
+    }
+
+    &.active {
+      background-color: #ec167f;
+      color: white;
+      border-color: #ec167f;
+    }
+  }
+}

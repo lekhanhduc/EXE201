@@ -4,9 +4,10 @@ import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-// Hình ảnh
 import background1 from "../../../assets/eventBackgorund.jpg";
 import background2 from "../../../assets/eventBackgorund2.jpg";
+import Categories from "../../../component/categories";
+import ServiceGrid from "../../../component/serviceGrid";
 
 const slides = [
   {
@@ -91,6 +92,8 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Categories/>
+      <ServiceGrid/>
     </div>
   );
 };

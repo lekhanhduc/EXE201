@@ -25,7 +25,7 @@ const SearchPopup: React.FC<SearchPopupProps> = ({ onClose }) => {
             value={isSearch}
             onChange={handleSearch}
             name="search"
-            className="formInput__Search-popup"
+            className="formInpumt__Search-popup"
           />
           <button>SEARCH</button>
         </div>
