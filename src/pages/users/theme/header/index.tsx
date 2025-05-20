@@ -12,7 +12,8 @@ const Header = () => {
   }
   return (
     <header className="header_container">
-      <div className="nav_header-logo"></div>
+      <div className="nav_header-logo">
+      </div>
       <div className="nav_header-content">
         <nav className="nav_header-item">
           <ul>
