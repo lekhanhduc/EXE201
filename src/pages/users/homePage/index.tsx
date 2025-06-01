@@ -8,19 +8,20 @@ import background1 from "../../../assets/eventBackgorund.jpg";
 import background2 from "../../../assets/eventBackgorund2.jpg";
 import Categories from "../../../component/categories";
 import ServiceGrid from "../../../component/serviceGrid";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
     image: background1,
     date: "January 22, 2025",
-    title: "World Digital Conference 2025",
-    info: ["4000 SEATS", "10 SPEAKERS", "PAULO, CALIFORNIA"],
+    title: "Providing quality & reputation 2025",
+    info: [ "10 Patner", "FPTU, DANANG"],
   },
   {
     image: background2,
     date: "March 12, 2025",
-    title: "Future Tech Expo 2025",
-    info: ["2500 SEATS", "15 SPEAKERS", "NEW YORK CITY"],
+    title: "Provide the best event services",
+    info: [ "10 Patner", "FPTI, TPHCM"],
   },
 ];
 
@@ -82,7 +83,7 @@ const HomePage = () => {
             ))}
           </div>
           <div data-aos="fade-up">
-            <button className="book-btn">Book Now</button>
+            <button className="book-btn"><Link to={"/decideEvent"} className="eventList_link">Book Now</Link></button>
           </div>
           <div className="next-icon" onClick={handleNext}>
             <FaArrowRight />

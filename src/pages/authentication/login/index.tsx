@@ -3,29 +3,43 @@ import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import "./style.scss";
 import loginBackground from "../../../assets/login/loginBackground.jpg";
 import { Link } from "react-router-dom";
+import { login } from "../../../api/authApi";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!username || !password) {
       alert("Please enter both email and password.");
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    if (!emailRegex.test(username)) {
       alert("Please enter a valid email address.");
       return;
     }
 
     setErrorMessage(""); 
 
-    console.log("Logging in with:", { email, password });
+    console.log("Logging in with:", { username, password });
+    try{
+      const result = await login({username, password});
+      console.log('login success: ', result);
+
+      // Lưu accessToken vào localStorage hoặc Redux store
+      localStorage.setItem('accessToken', result.accessToken);
+
+      // Redirect hoặc chuyển trạng thái
+      window.location.href = '/';
+    }catch(err){
+      console.error('Login failed:', err);
+      setErrorMessage('Invalid username or password!');
+    }
   };
 
   return (
@@ -44,8 +58,8 @@ const Login = () => {
               <input
                 type="text"
                 placeholder="Email or phone"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </div>
 

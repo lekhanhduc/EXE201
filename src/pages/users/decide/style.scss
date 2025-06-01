@@ -1,0 +1,36 @@
+.decideEvent__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  padding-top: 70px;
+}
+
+// Bộ lọc phía trên
+.home-filter {
+  background-color: #fff;
+  padding: 12px 16px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+// Giao diện chính chia 2 cột
+.decideEvent__content {
+  display: flex;
+  gap: 24px;
+}
+
+// Sidebar bên trái
+.grid__column-2 {
+  flex: 0 0 200px;
+  max-width: 200px;
+}
+
+// Product list bên phải
+.home-product {
+  flex: 1;
+}

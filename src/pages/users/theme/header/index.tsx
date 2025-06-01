@@ -1,18 +1,35 @@
 import "./style.scss";
-import HeaderContent from "../../../data/headerContent";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import SearchPopup from "../../../../component/searchPopup";
+import HeaderContent from "../../../data/headerContent";
+import logo2 from "../../../../assets/logo.png";
+import Logout from "../../../authentication/logout";
+
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Trạng thái đăng nhập
+
+  // Giả lập kiểm tra đăng nhập (dữ liệu giả)
+  const handleLogin = () => {
+
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // Đăng xuất
+  };
+
   const toggleSearch = () => {
     setShowSearch(!showSearch);
-  }
+  };
+
   return (
     <header className="header_container">
       <div className="nav_header-logo">
+        <img src={logo2} alt="" />
+        <h3>SOARING EVENT</h3>
       </div>
       <div className="nav_header-content">
         <nav className="nav_header-item">
@@ -20,7 +37,7 @@ const Header = () => {
             {HeaderContent.map((item, index) => (
               <li key={index} className="nav_header-list">
                 <Link to={item.path} className="nav_header-link">
-                {item.name}
+                  {item.name}
                 </Link>
               </li>
             ))}
@@ -36,16 +53,25 @@ const Header = () => {
               onClick={toggleSearch}
             />
             <div className="nav_header-button">
-              <button>
-                <Link to={"./login"} className="button__link">
-                  Login
-                </Link>
-              </button>
+              {isLoggedIn ? (
+                <div className="dropdown">
+                  <button className="button__link">Profile</button>
+                  <div className="dropdown-content">
+                    <Link to={"/profile"} className="dropdown-link" >Profile</Link>
+                    <Link to={"/mycart"} className="dropdown-link">My Cart</Link>
+                    <Logout onLogout={handleLogout} />
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <button onClick={handleLogin}><Link to={"/login"} className="button__link-login">Login</Link></button>
+                </div>
+              )}
             </div>
           </ul>
         </nav>
       </div>
-      {showSearch && <SearchPopup onClose={toggleSearch}/>}
+      {showSearch && <SearchPopup onClose={toggleSearch} />}
     </header>
   );
 };
