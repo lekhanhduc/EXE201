@@ -11,27 +11,14 @@ import Logout from "../../../authentication/logout";
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Trạng thái đăng nhập
-  const [username, setUsername] = useState(""); // Lưu tên người dùng khi đăng nhập
-  const [password, setPassword] = useState(""); // Lưu mật khẩu (dữ liệu giả)
-  const [loginError, setLoginError] = useState(""); // Lỗi khi đăng nhập thất bại
 
   // Giả lập kiểm tra đăng nhập (dữ liệu giả)
   const handleLogin = () => {
-    const fakeUsername = "user";
-    const fakePassword = "password";
 
-    if (username === fakeUsername && password === fakePassword) {
-      setIsLoggedIn(true); // Giả lập đăng nhập thành công
-      setLoginError("");
-    } else {
-      setLoginError("Sai tên đăng nhập hoặc mật khẩu"); // Giả lập đăng nhập thất bại
-    }
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false); // Đăng xuất
-    setUsername(""); // Xóa tên người dùng
-    setPassword(""); // Xóa mật khẩu
   };
 
   const toggleSearch = () => {
@@ -77,20 +64,7 @@ const Header = () => {
                 </div>
               ) : (
                 <div>
-                  <input
-                    type="text"
-                    placeholder="Username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                  />
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <button onClick={handleLogin}>Login</button>
-                  {loginError && <p className="error">{loginError}</p>} {/* Hiển thị lỗi */}
+                  <button onClick={handleLogin}><Link to={"/login"} className="button__link-login">Login</Link></button>
                 </div>
               )}
             </div>

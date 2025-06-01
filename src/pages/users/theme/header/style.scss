@@ -159,6 +159,13 @@
         }
       }
     }
+    .button__link-login{
+      text-decoration: none;
+      color: #fff;
+      &:hover{
+        color: #101130;
+      }
+    }
   }
 }
 
