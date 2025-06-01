@@ -32,7 +32,7 @@ const SearchPopup: React.FC<SearchPopupProps> = ({ onClose }) => {
         <div className="search-popup__keywords">
           <h3>Recent Search Keywords</h3>
           <div className="search-popup__tags">
-            {["Seo", "Business", "Events", "Digital", "Conference"].map(
+            {["Festival", "Sport", "Ceremonial", "Media", "Personal"].map(
               (tag) => (
                 <button key={tag} className="search-popup__tag">
                   {tag}

@@ -1,0 +1,160 @@
+.event-equipment-list {
+  padding: 20px;
+
+  .grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .grid__column-2-4 {
+    flex: 0 0 calc(25% - 15px); // 4 cột trên 1 hàng, trừ khoảng cách
+    box-sizing: border-box;
+  }
+
+  .event-equipment-item {
+    display: block;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgb(0 0 0 / 0.1);
+    overflow: hidden;
+    text-decoration: none;
+    color: #333;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0 15px rgb(0 0 0 / 0.2);
+    }
+
+    &__img {
+      width: 100%;
+      padding-top: 75%; // tỉ lệ 4:3 cho hình
+      background-position: center;
+      background-size: cover;
+      border-bottom: 1px solid #eee;
+      border-radius: 8px 8px 0 0;
+    }
+
+    &__name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 12px 15px 8px;
+      line-height: 1.3;
+      min-height: 48px; // cố định chiều cao để tên dài không làm layout lệch
+    }
+
+    &__price {
+      margin: 0 15px 12px;
+      font-size: 1rem;
+      color: #d9534f; // màu đỏ đặc trưng cho giá cọc
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      &-label {
+        font-weight: 500;
+        color: #777;
+        font-size: 0.9rem;
+      }
+
+      &-price {
+        font-size: 1.2rem;
+      }
+    }
+
+    &__action {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px 15px;
+
+      &-like {
+        cursor: pointer;
+        font-size: 1.3rem;
+        color: #999;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #d9534f;
+        }
+      }
+
+      &-rating {
+        display: flex;
+        gap: 3px;
+
+        i {
+          font-size: 1rem;
+          color: #ddd;
+
+          &.event-equipment-item__star-gold {
+            color: #f0b90b;
+          }
+        }
+      }
+
+      &-rented-count {
+        font-size: 0.85rem;
+        color: #666;
+      }
+    }
+
+    &__favourite {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background-color: #d9534f;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.15);
+
+      i {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__sale-off {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background-color: #5cb85c;
+      color: white;
+      padding: 3px 7px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      gap: 4px;
+
+      &-percent {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 1024px) {
+  .event-equipment-list .grid__column-2-4 {
+    flex: 0 0 calc(33.333% - 13.33px); // 3 cột
+  }
+}
+
+@media (max-width: 768px) {
+  .event-equipment-list .grid__column-2-4 {
+    flex: 0 0 calc(50% - 10px); // 2 cột
+  }
+}
+
+@media (max-width: 480px) {
+  .event-equipment-list .grid__column-2-4 {
+    flex: 0 0 100%; // 1 cột
+  }
+}

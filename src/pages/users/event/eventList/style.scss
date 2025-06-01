@@ -1,0 +1,208 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.ourPatner__container {
+  padding-top: 70px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fcfcfc;
+  .background__item {
+    position: relative;
+    width: 100vw;
+    height: 400px;
+    background-image: url("../../../../assets/event/eventBackground.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      background-attachment: scroll;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    h1 {
+      z-index: 2;
+      color: #fff;
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    div {
+      z-index: 2;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      font-size: 16px;
+
+      .item__link {
+        text-decoration: none;
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 15px;
+
+        &:hover {
+          text-decoration: underline;
+          color: #ff90c1;
+        }
+      }
+
+      p {
+        color: #fff;
+        opacity: 0.85;
+
+        &::before {
+          content: "/";
+          margin: 0 6px;
+        }
+      }
+    }
+  }
+
+  .ourPatner__title {
+    text-align: center;
+    margin: 50px 0 20px;
+
+    h3 {
+      color: #ec167f;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      color: #1d1d1d;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+  }
+  .event__listWrapper {
+    display: grid;
+      grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 30px;
+    .event__card {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      max-width: 80%;
+      margin: 40px auto;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-5px);
+        border: 1px solid #2563eb;
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .event__imageSection {
+        background-color: #f9f9f9;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          padding: 20px;
+        }
+      }
+
+      .event__contentSection {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .event__title {
+          font-size: 24px;
+          font-weight: 700;
+          color: #222;
+          margin: 15px 0;
+          line-height: 1.4;
+        }
+
+        .event__location {
+          display: flex;
+          align-items: center;
+          color: #444;
+          font-size: 14px;
+          margin-bottom: 20px;
+
+          .event__icon {
+            color: #ef4444;
+            margin-right: 8px;
+          }
+        }
+
+        .event__author {
+          display: flex;
+          align-items: center;
+          margin-bottom: 20px;
+
+          .event__avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-right: 12px;
+            object-fit: contain;
+          }
+
+          .event__authorName {
+            font-weight: 600;
+            font-size: 15px;
+            margin: 0;
+          }
+
+          .event__authorRole {
+            font-size: 13px;
+            color: #888;
+            margin: 0;
+          }
+        }
+
+        .event__footer {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          .event__viewMoreBtn {
+            background-color: #3b82f6;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #2563eb;
+            }
+
+            .eventDetailsP__link{
+              text-decoration: none;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+}

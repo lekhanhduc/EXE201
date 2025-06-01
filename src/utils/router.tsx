@@ -3,6 +3,16 @@ export const ROUTERS = {
     HOME: "",
     ABOUTUS:"/aboutUS",
     CONTACTUS:"/contactUS",
+    EVENTTYPE:"/eventType",
+    FESTIVALEVENT:"/festivalEvent",
+    OURPATNER:"/ourPatner",
+    EVENTLIST:"/eventList",
+    EVENTDETAILS:"/eventDetails",
+    DECIDEEVENT: "/decideEvent",
+    PURCHASE:"/purchase/:id",
+    PAYMENT:"/payment",
+    PROFILE: "/profile",
+    MYCART: "/myCart"
   },
   AUTH: {
     LOGIN: "/login",
