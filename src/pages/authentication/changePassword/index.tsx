@@ -12,34 +12,38 @@ const ChangePassword: React.FC<ChangePasswordProps> = ({ onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handlePasswordChange = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!oldPassword || !newPassword || !confirmPassword) {
-      alert("Please enter complete information!");
-    }
+  e.preventDefault();
+  if (!oldPassword || !newPassword || !confirmPassword) {
+    alert("Please enter complete information!");
+    return;  
+  }
 
-    if (newPassword === confirmPassword) {
-      setNewPassword("");
-      setConfirmPassword("");
-      onClose();
+  if (newPassword !== confirmPassword) {
+    alert("Passwords do not match, please try again!");
+    return;
+  }
+
+  try {
+    const result = await changePassword({ oldPassword, newPassword });
+    console.log("Change password success", result);
+    alert("Password changed successfully!");  
+    setOldPassword("");
+    setNewPassword("");
+    setConfirmPassword("");
+    onClose(); 
+  } catch (err: unknown) {
+    console.log("Change password failed", err);
+    if (
+      axios.isAxiosError(err) &&
+      err.response &&
+      err.response.data.message === "Old password is incorrect"
+    ) {
+      alert("Old password is incorrect!");
     } else {
-      alert("Mật khẩu không khớp, vui lòng thử lại!");
+      alert("Change password failed. Please try again!");
     }
-    try {
-      const result = await changePassword({ oldPassword, newPassword });
-      console.log("Change password success", result);
-    } catch (err: unknown) {
-      console.log("Change password failed", err);
-      if (
-        axios.isAxiosError(err) &&
-        err.response &&
-        err.response.data.message === "Old password is incorrect"
-      ) {
-        alert("Old password is incorrect!");
-      } else {
-        alert("Change password failed. Please try again!");
-      }
-    }
-  };
+  }
+};
 
   return (
     <div className="change-password-overlay">
