@@ -2,7 +2,7 @@ import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchPopup from "../../../../component/searchPopup";
 import HeaderContent from "../../../data/headerContent";
 import logo2 from "../../../../assets/logo.png";
@@ -18,12 +18,22 @@ const Header = () => {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("accessToken")
     setIsLoggedIn(false); // Đăng xuất
   };
 
   const toggleSearch = () => {
     setShowSearch(!showSearch);
   };
+
+  useEffect(()=> {
+    const token = localStorage.getItem("accessToken");
+    if(token){
+      setIsLoggedIn(true)
+    }else{
+      setIsLoggedIn(false)
+    }
+  })
 
   return (
     <header className="header_container">

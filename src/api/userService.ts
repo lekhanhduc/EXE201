@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { User } from "../type/User";
 
-const API_URL = "http://localhost:8080/api/users";
+const API_URL = "http://localhost:8081/api/users";
 
 export const getUserById = (id: number) => {
   return axios.get<User>(`${API_URL}/${id}`);
