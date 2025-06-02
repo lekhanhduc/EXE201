@@ -1,14 +1,16 @@
 // Profile.tsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./style.scss";
 import ChangePassword from "../../authentication/changePassword";
 import { Link } from "react-router-dom";
 import ChangeInfo from "../../../component/changeInfo";
+import {
+  getProfile,
+  type ProfileDetailResponse,
+} from "../../../api/profileApi";
 
 const Profile = () => {
-  const [name, setName] = useState("John Doe");
-  const [phone, setPhone] = useState("123-456-7890");
-  const [email, setEmail] = useState("johndoe@example.com");
+  const [profile, setProfile] = useState<ProfileDetailResponse | null>(null);
   const [showChangePassword, setShowChangePassword] = useState(false);
   const [showChangeInfo, setShowChangeInfo] = useState(false);
 
@@ -20,15 +22,6 @@ const Profile = () => {
     setShowChangeInfo(false);
   };
 
-  const handleUpdateInfo = (
-    newName: string,
-    newPhone: string,
-    newEmail: string
-  ) => {
-    setName(newName);
-    setPhone(newPhone);
-    setEmail(newEmail);
-  };
   const handleShowChangePassword = () => {
     setShowChangePassword(true);
   };
@@ -36,6 +29,23 @@ const Profile = () => {
   const handleCloseChangePassword = () => {
     setShowChangePassword(false);
   };
+
+  const fetchProfile = async () => {
+    try {
+      const data = await getProfile();
+      console.log("Profile info: ", data);
+      setProfile(data);
+    } catch (err) {
+      console.error("Get info profile error!", err);
+    }
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
+  if (!profile) {
+    return <p>Loading profile...</p>;
+  }
 
   return (
     <div className="profile-container">
@@ -56,21 +66,27 @@ const Profile = () => {
               alt="Profile Avatar"
             />
           </div>
-          <h2>{name}</h2>
+          <h2>
+            {profile.firstName}
+            {profile.lastName}
+          </h2>
         </div>
 
         <div className="profile-info">
           <div className="profile-item">
             <label>Name:</label>
-            <span>{name}</span>
+            <span>
+              {profile.firstName}
+              {profile.lastName}
+            </span>
           </div>
           <div className="profile-item">
             <label>Phone:</label>
-            <span>{phone}</span>
+            <span>{profile.phone}</span>
           </div>
           <div className="profile-item">
             <label>Email:</label>
-            <span>{email}</span>
+            <span>{profile.email}</span>
           </div>
         </div>
         <div className="profile-actions">
@@ -86,13 +102,16 @@ const Profile = () => {
           <button className="change-info-btn" onClick={handleShowChangeInfo}>
             Change Info
           </button>
-          {showChangeInfo && (
+          {showChangeInfo && profile && (
             <ChangeInfo
+              profile={{
+                firstName: profile.firstName,
+                lastName: profile.lastName,
+                phone: profile.phone,
+                email: profile.email,
+              }}
               onClose={handleCloseChangeInfo}
-              initialName={name}
-              initialPhone={phone}
-              initialEmail={email}
-              onUpdateInfo={handleUpdateInfo}
+              onUpdate={fetchProfile}
             />
           )}
         </div>

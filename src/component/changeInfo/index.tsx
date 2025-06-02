@@ -1,33 +1,49 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style.scss";
+import { updateProfile } from "../../api/profileApi";
 
 interface ChangeInfoProps {
   onClose: () => void;
-  initialName: string;
-  initialPhone: string;
-  initialEmail: string;
-  onUpdateInfo: (newName: string, newPhone: string, newEmail: string) => void;
+  profile: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+  };
+  onUpdate: () => void;
 }
 
-const ChangeInfo: React.FC<ChangeInfoProps> = ({
-  onClose,
-  initialName,
-  initialPhone,
-  initialEmail,
-  onUpdateInfo,
-}) => {
-  const [newName, setNewName] = useState(initialName);
-  const [newPhone, setNewPhone] = useState(initialPhone);
-  const [newEmail, setNewEmail] = useState(initialEmail);
+const ChangeInfo: React.FC<ChangeInfoProps> = ({ onClose, onUpdate, profile }) => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
 
-  const handleInfoChange = () => {
-    // Validation (you can add more validation as needed)
-    if (newName && newPhone && newEmail) {
-      onUpdateInfo(newName, newPhone, newEmail); // Update parent component
-      alert("Thông tin đã được cập nhật!");
-      onClose(); // Close the form
-    } else {
-      alert("Vui lòng điền đầy đủ thông tin!");
+  // Khởi tạo state từ profile
+  useEffect(() => {
+    setFirstName(profile.firstName || "");
+    setLastName(profile.lastName || "");
+    setPhone(profile.phone || "");
+    setEmail(profile.email || "");
+  }, [profile]);
+
+  const handleInfoChange = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!firstName || !lastName || !phone || !email) {
+      alert("Please enter complete info!");
+      return;
+    }
+
+    try {
+      const result = await updateProfile({ firstName, lastName, email, phone });
+      console.log("Update info success!", result);
+      alert("Info updated successfully!");
+      onClose();
+      onUpdate();
+    } catch (err) {
+      console.log("Update info failed!", err);
+      alert("Update failed. Please try again!");
     }
   };
 
@@ -35,37 +51,50 @@ const ChangeInfo: React.FC<ChangeInfoProps> = ({
     <div className="change-info-overlay">
       <div className="change-info-modal">
         <h3>Thay Đổi Thông Tin</h3>
-        <div className="info-field">
-          <label>Name:</label>
-          <input
-            type="text"
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            placeholder="Enter new name"
-          />
-        </div>
-        <div className="info-field">
-          <label>Phone:</label>
-          <input
-            type="text"
-            value={newPhone}
-            onChange={(e) => setNewPhone(e.target.value)}
-            placeholder="Enter new phone"
-          />
-        </div>
-        <div className="info-field">
-          <label>Email:</label>
-          <input
-            type="email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            placeholder="Enter new email"
-          />
-        </div>
-        <button onClick={handleInfoChange}>Update Info</button>
-        <button className="cancel-btn" onClick={onClose}>
-          Cancel
-        </button>
+        <form onSubmit={handleInfoChange}>
+          <div className="info-field">
+            <label>First name:</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="Enter new name"
+            />
+          </div>
+          <div className="info-field">
+            <label>Last name:</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Enter new name"
+            />
+          </div>
+          <div className="info-field">
+            <label>Phone:</label>
+            <input
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              placeholder="Enter new phone"
+            />
+          </div>
+          <div className="info-field">
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter new email"
+            />
+          </div>
+          <div className="button-group">
+            <button type="submit">Update Info</button>
+            <button type="button" className="cancel-btn" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
