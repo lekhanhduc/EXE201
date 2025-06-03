@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   /* Background Section */
   .background__item {
     position: relative;
@@ -47,6 +48,7 @@
         color: #fff;
         font-weight: 600;
         transition: color 0.3s ease, transform 0.3s ease;
+
         &:hover {
           color: #ff90c1;
           text-decoration: underline;
@@ -80,6 +82,7 @@
     justify-content: space-between;
     margin-bottom: 40px;
     padding: 20px;
+
     .profile-header {
       display: flex;
       align-items: center;
@@ -94,12 +97,14 @@
         border-radius: 50%;
         overflow: hidden;
         border: 3px solid #ff3471;
+
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
           transition: transform 0.3s ease;
         }
+
         img:hover {
           transform: scale(1.1);
         }
@@ -163,9 +168,11 @@
       }
     }
   }
+
   /* Change Info Button */
   .change-info-btn {
-    background-color: #ec167f; /* Light pinkish color for emphasis */
+    background-color: #ec167f;
+    /* Light pinkish color for emphasis */
     color: #fff;
     padding: 12px 30px;
     font-size: 1rem;
@@ -174,15 +181,19 @@
     border: none;
     transition: background-color 0.3s ease, transform 0.2s ease;
     width: 200px;
-    margin-top: 20px; /* Adding some space above the button for better alignment */
+    margin-top: 20px;
+    /* Adding some space above the button for better alignment */
 
     &:hover {
-      background-color: #ff3471; /* Darker pink on hover */
-      transform: translateY(-3px); /* Hover effect */
+      background-color: #ff3471;
+      /* Darker pink on hover */
+      transform: translateY(-3px);
+      /* Hover effect */
     }
 
     &:active {
-      transform: translateY(1px); /* Active button effect */
+      transform: translateY(1px);
+      /* Active button effect */
     }
   }
 

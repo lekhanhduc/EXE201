@@ -2,7 +2,7 @@ import "./style.scss";
 import loginBackground from "../../../assets/login/loginBackground.jpg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { register } from "../../../api/authApi";
+import { register, type RegisterRequest } from "../../../api/authApi";
 
 const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -10,28 +10,27 @@ const Register = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!email || !firstName || !lastName || !password || !confirmPassword) {
-      setErrorMessage("Please fill in all fields.");
-      return;
-    }
-
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match.");
-      return;
-    }
-
     setErrorMessage("");
     console.log({ email, firstName, lastName, password });
-    try{
-      const result = await register({email, firstName, lastName, password})
-      console.log("Register success: ", result)
+    try {
+      const request: RegisterRequest = {
+        email,
+        password,
+        firstName,
+        lastName,
+
+      }
+      const result = await register(request);
+      if (result.code === 201) {
+        window.location.href = "/login";
+      }
+
       window.location.href = "/login"
-    }catch(err){
-      console.log("Login Failed", err);
+    } catch (err) {
       setErrorMessage("Register failed. Please try again!");
     }
   };
@@ -60,7 +59,7 @@ const Register = () => {
               placeholder="First Name"
               required
               value={firstName}
-              onChange={(e)=>setFirstName(e.target.value)}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
 
@@ -71,7 +70,7 @@ const Register = () => {
               placeholder="Last Name"
               required
               value={lastName}
-              onChange={(e)=>setLastName(e.target.value)}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
 
@@ -82,7 +81,7 @@ const Register = () => {
               placeholder="Email address"
               required
               value={email}
-              onChange={(e)=>setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -93,18 +92,7 @@ const Register = () => {
               placeholder="Password"
               required
               value={password}
-              onChange={(e)=>setPassword(e.target.value)}
-            />
-          </div>
-
-          <div className="register__field">
-            <input
-              type="password"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              required
-              value={confirmPassword}
-              onChange={(e)=>setConfirmPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

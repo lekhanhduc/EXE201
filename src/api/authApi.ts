@@ -1,3 +1,4 @@
+import type { ApiResponse } from '../type/ApiResponse';
 import axiosInstance from './axiosInstance';
 
 interface LoginRequest {
@@ -10,17 +11,17 @@ interface LoginResponse {
   refreshToken: string;
 }
 
-interface RegisterRequest {
-  email:string;
-  firstName: string;
-  lastName:string;
+export interface RegisterRequest {
+  email: string;
   password: string;
+  firstName: string;
+  lastName: string;
 }
 
 interface RegisterResponse {
-  email:string;
+  email: string;
   firstName: string;
-  lastName:string;
+  lastName: string;
 }
 
 interface UpdatePasswordRequest {
@@ -39,12 +40,12 @@ export const signInGoogle = async (code: string) => {
   return response.data.result;
 }
 
-export const register = async (data: RegisterRequest) : Promise<RegisterResponse> => {
-  const response = await axiosInstance.post('/users/registration',data);
-  return response.data.result;
+export const register = async (data: RegisterRequest): Promise<ApiResponse<RegisterResponse>> => {
+  const response = await axiosInstance.post('/users/registration', data);
+  return response.data;
 }
 
-export const changePassword = async (data: UpdatePasswordRequest) : Promise<void>=> {
+export const changePassword = async (data: UpdatePasswordRequest): Promise<void> => {
   const response = await axiosInstance.put('/users/change-password', data);
   return response.data.result;
 }
