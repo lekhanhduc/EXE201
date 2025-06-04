@@ -29,7 +29,7 @@ const EventList = () => {
         {patnerContent.map((item, index) => (
           <div className="event__card" key={index} data-aos="fade-up">
             <div className="event__imageSection">
-              <img src={item.image} alt={item.title} />
+              <img src={item.image[0]} alt={item.title} />
             </div>
             <div className="event__contentSection">
               <h2 className="event__title">{item.title}</h2>
@@ -39,7 +39,7 @@ const EventList = () => {
               </div>
               <div className="event__author">
                 <img
-                  src={item.image || "https://via.placeholder.com/40"}
+                  src={item.image[0] || "https://via.placeholder.com/40"}
                   alt={item.name}
                   className="event__avatar"
                 />

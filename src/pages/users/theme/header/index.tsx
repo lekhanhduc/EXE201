@@ -1,7 +1,7 @@
 import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import SearchPopup from "../../../../component/searchPopup";
 import HeaderContent from "../../../data/headerContent";
@@ -11,7 +11,7 @@ import Logout from "../../../authentication/logout";
 const Header = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Trạng thái đăng nhập
-
+  const navigate = useNavigate()
   // Giả lập kiểm tra đăng nhập (dữ liệu giả)
   const handleLogin = () => {
 
@@ -20,6 +20,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken")
     setIsLoggedIn(false); // Đăng xuất
+    navigate("/")
   };
 
   const toggleSearch = () => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./style.scss";
+import axiosInstance from "../../../api/axiosInstance";
 
 interface Product {
   id: number;
@@ -53,7 +54,6 @@ const PurchaseForm: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>("");
 
-  // Form states
   const [customerName, setCustomerName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -65,7 +65,7 @@ const PurchaseForm: React.FC = () => {
     ward: "",
     district: "",
     city: "Đà Nẵng",
-    country: "Việt Nam"
+    country: "Việt Nam",
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -74,11 +74,12 @@ const PurchaseForm: React.FC = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const response = await fetch(`http://localhost:8080/products/${id}`);
-        const data: ApiResponse = await response.json();
+        const response = await axiosInstance.get<ApiResponse>(`/products/${id}`);
+        const data = response.data;
 
         if (data.code === 200) {
           setProduct(data.result);
+          setError("");
         } else {
           setError("Không thể tải thông tin sản phẩm");
         }
@@ -105,9 +106,9 @@ const PurchaseForm: React.FC = () => {
   };
 
   const handleAddressChange = (field: keyof Address, value: string) => {
-    setAddress(prev => ({
+    setAddress((prev) => ({
       ...prev,
-      [field]: value
+      [field]: value,
     }));
   };
 
@@ -151,23 +152,17 @@ const PurchaseForm: React.FC = () => {
       quantity,
       rentalStartDate,
       rentalEndDate,
-      address
+      address,
+      customerName,
+      phone,
+      email,
     };
 
     try {
-      const response = await fetch("http://localhost:8080/order/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-        },
-        body: JSON.stringify(orderData),
-      });
-
-      const result: OrderResponse = await response.json();
+      const response = await axiosInstance.post<OrderResponse>("/order/create", orderData);
+      const result = response.data;
 
       if (result.error === 0 && result.data.checkoutUrl) {
-        // Chuyển hướng đến trang thanh toán
         window.location.href = result.data.checkoutUrl;
       } else {
         alert("Có lỗi xảy ra khi tạo đơn hàng: " + result.message);
@@ -333,7 +328,7 @@ const PurchaseForm: React.FC = () => {
                 type="date"
                 value={rentalStartDate}
                 onChange={(e) => setRentalStartDate(e.target.value)}
-                min={new Date().toISOString().split('T')[0]}
+                min={new Date().toISOString().split("T")[0]}
                 required
               />
             </div>
@@ -346,7 +341,7 @@ const PurchaseForm: React.FC = () => {
                 type="date"
                 value={rentalEndDate}
                 onChange={(e) => setRentalEndDate(e.target.value)}
-                min={rentalStartDate || new Date().toISOString().split('T')[0]}
+                min={rentalStartDate || new Date().toISOString().split("T")[0]}
                 required
               />
             </div>
@@ -363,7 +358,7 @@ const PurchaseForm: React.FC = () => {
               id="street"
               type="text"
               value={address.street}
-              onChange={(e) => handleAddressChange('street', e.target.value)}
+              onChange={(e) => handleAddressChange("street", e.target.value)}
               placeholder="Ví dụ: 07 Trần Quốc Vượng"
               required
             />
@@ -377,7 +372,7 @@ const PurchaseForm: React.FC = () => {
                 id="ward"
                 type="text"
                 value={address.ward}
-                onChange={(e) => handleAddressChange('ward', e.target.value)}
+                onChange={(e) => handleAddressChange("ward", e.target.value)}
                 placeholder="Ví dụ: Hòa Hải"
                 required
               />
@@ -390,7 +385,7 @@ const PurchaseForm: React.FC = () => {
                 id="district"
                 type="text"
                 value={address.district}
-                onChange={(e) => handleAddressChange('district', e.target.value)}
+                onChange={(e) => handleAddressChange("district", e.target.value)}
                 placeholder="Ví dụ: Ngũ Hành Sơn"
                 required
               />
@@ -405,7 +400,7 @@ const PurchaseForm: React.FC = () => {
                 id="city"
                 type="text"
                 value={address.city}
-                onChange={(e) => handleAddressChange('city', e.target.value)}
+                onChange={(e) => handleAddressChange("city", e.target.value)}
                 required
               />
             </div>
@@ -417,7 +412,7 @@ const PurchaseForm: React.FC = () => {
                 id="country"
                 type="text"
                 value={address.country}
-                onChange={(e) => handleAddressChange('country', e.target.value)}
+                onChange={(e) => handleAddressChange("country", e.target.value)}
                 required
               />
             </div>
@@ -425,18 +420,10 @@ const PurchaseForm: React.FC = () => {
         </div>
 
         <div className="form-actions">
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="btn-secondary"
-          >
+          <button type="button" onClick={() => navigate(-1)} className="btn-secondary">
             Quay lại
           </button>
-          <button
-            type="submit"
-            className="btn-primary"
-            disabled={submitting}
-          >
+          <button type="submit" className="btn-primary" disabled={submitting}>
             {submitting ? "Đang xử lý..." : "Đặt thuê ngay"}
           </button>
         </div>

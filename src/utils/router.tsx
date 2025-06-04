@@ -12,7 +12,7 @@ export const ROUTERS = {
     PURCHASE: "/purchase/:id",
     PAYMENT: "/payment",
     PROFILE: "/profile",
-    MYCART: "/myCart"
+    MYCART: "/myCart",
   },
   AUTH: {
     LOGIN: "/login",

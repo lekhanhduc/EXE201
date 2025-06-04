@@ -31,7 +31,7 @@ const OurPatner = () => {
         {patnerContent.map((partner, index) => (
           <div key={index} className="partner-card" data-aos="fade-up">
             <div className="partner-avatar">
-              <img src={partner.image} alt={partner.name} />
+              <img src={partner.image[0]} alt={partner.name} />
             </div>
             <div className="partner-header">
               <h3>{partner.name}</h3>
